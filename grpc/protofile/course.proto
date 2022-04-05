@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "grpc/pb";
+
+message Course {
+  string name = 1;
+}
+
+message CourseResult {
+  string id = 1;
+  string name = 2;
+}
+
+service CourseService {
+  rpc CreateCourse(Course) returns (CourseResult) {};
+}
+
+//protoc --proto_path=grpc/protofile grpc/protofile/*.proto --plugin=$(go env GOPATH)/bin/protoc-gen-go-grpc --go-grpc_out=. --go_out=.
+//protoc --proto_path=grpc/protofile grpc/protofile/*.proto --plugin="C:\Program Files\Go\bin\protoc-gen-go-grpc --go-grpc_out=./ --go_out=./"
+//May needs install: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
